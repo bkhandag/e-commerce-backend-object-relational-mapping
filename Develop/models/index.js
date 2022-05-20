@@ -11,6 +11,11 @@ Product.belongsTo(Category, {
 });
 
 // Categories have many Products
+//TODO
+Category.hasMany(Product, {
+  foreignKey: "",
+  onDelete: "",
+})
 
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
@@ -19,6 +24,11 @@ Product.belongsToMany(Tag, {
 })
 
 // Tags belongToMany Products (through ProductTag)
+//TODO
+Tag.belongsToMany(Product, {
+  foreignKey: "",
+  through: ,
+}
 
 module.exports = {
   Product,
