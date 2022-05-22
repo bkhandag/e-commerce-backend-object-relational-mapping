@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   Product.findAll({
     include: [Category, Tag],
   })
-  .then(Product => res.json(categories))
+  .then(product => res.status(200).json(product))
   .catch(err => res.status(500).json(err))
 });
 
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     },
           include: [Category, Tag],
 })
-  .then(categories => res.json(categories))
+  .then(product => res.status(200).json(product))
   .catch(err => res.status(500).json(err)) 
 });
 
@@ -102,7 +102,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.destroy('/:id', (req, res) => {
   // delete one product by its `id` value
   Product.delete({
     where: {

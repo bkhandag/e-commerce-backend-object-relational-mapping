@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   Category.findAll({
     include: [Product],
   })
-  .then(categories => res.json(categories))
+  .then(categories => res.status(200).json(categories))
   .catch(err => res.status(500).json(err))
 });
 
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     },
           include: [Product],
 })
-  .then(categories => res.json(categories))
+  .then(categories => res.status(200).json(categories))
   .catch(err => res.status(500).json(err)) 
 });
 
@@ -36,7 +36,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Category.update({
-    where: {
+    category_name: req.body.category_name },
+    {where: {
       id: req.params.id
     },
     })
@@ -46,7 +47,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
-  Category.delete({
+  Category.destroy({
     where: {
       id: req.params.id
     },
